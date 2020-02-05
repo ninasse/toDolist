@@ -10,37 +10,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="/main.css">
 
-    <title>My ToDo-list NodeJS FED19S Nina</title>
+    <title>My ToDo-list update NodeJS FED19S Nina</title>
 </head>
 <body>
     <div class="container">
-        <h1>Min att göra lista</h1>
-        <form actionn="/todolist" method="post" class="form-inline" id="toDoForm">
+        <h1>Gör ändringar</h1>
+        <form actionn="/todolist" method="post" class="form-inline" id="editForm">
             <div class="form-group my-2">
-                <label for="newTask" class="m-1">Ny uppgift</label>
-                <input type="text" class="form-control mr-2" name="todo" id="" value="" placeholder="fyll i ny uppgift">
+                <label for="editTask" class="m-1">Ändra uppgift</label>
+                <input type="text" class="form-control mr-2" name="todo" id="" value="<%= editRes.todo %>">
             </div>
             <div class="form-group my-2">
                 <label for="creator" class="m-1">Ditt namn</label>
-                <input type="text" class="form-control mr-2" name="creator" id="" placeholder="fyll i namn">
+                <input type="text" class="form-control mr-2" name="creator" readonly id="" value="<%= editRes.creator %>">
             </div>
-            <input type="hidden" name="date" id="">
-            <button type="submit" class="btn btn-dark m-2">Lägg till uppgift</button>
+            <input type="hidden" name="date" id="<%= editRes._id %>">
+            <button type="submit" class="btn btn-dark m-2">Spara ändringar</button>
         </form>  
-        <div class="row">
-            <div class="col-4">
-                <% toDos.forEach( (task)=> { %>
-                    <li>   <b> <%= task.todo %> </b>
-                            <div>Skapad av: <%= task.creator %></div> 
-                            <div> <%= task.date %> </div>
-                            <button type="button" class="btn btn-dark"><a href="/delete/<%= task._id%> ">Klart! </a></button>
-                            <button type="button" class="btn btn-dark"><a href="/update/<%= task._id%> ">Ändra. </a></button>
-                    </li>
-                <% }); %>
-            </div>
-        </div>  
     </div>
     
 </body>

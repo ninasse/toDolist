@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const schemaToDo = new mongoose.Schema({
-        text: String,
-        creator: String,
+        todo: {type: String, required: true},
+        creator: {type: String, required: true},
         date: {type: Date, default: Date.now},
     });
 

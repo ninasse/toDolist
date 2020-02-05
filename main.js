@@ -1,14 +1,16 @@
+//import express from 'express';
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 const config = require("./config/config");
 const toDoRoutes = require("./routes/toDoRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 8001;
 
-app.use(express.urlencoded({extended: true}));
-
 // middleware
+app.use(express.urlencoded({extended: true}));
+app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 
 // routes
