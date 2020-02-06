@@ -1,2 +1,19 @@
 body {
-  background-color: lightgray; }
+  background: #c0fbf0;
+  background: linear-gradient(#009999, white, #009999); }
+  body h1 {
+    text-align: center; }
+  body h3 {
+    font-size: 1.5rem; }
+  body form li {
+    list-style-type: none; }
+  body button {
+    background-color: transparent;
+    border: 1px solid black !important; }
+    body button a {
+      color: black; }
+  body button:hover {
+    background-color: black;
+    color: #009999 !important; }
+    body button:hover a:hover {
+      color: #009999; }

@@ -15,20 +15,24 @@
             <button type="submit" class="btn btn-dark m-2">Lägg till uppgift</button>
         </form>  
         <div class="row">
-            <div class="col-4">
+            <div class="col-6 my-3">
+                <h2>Att göra: </h2>
                 <% toDos.forEach( (task)=> { %>
-                    <li>   <b> <%= task.todo %> </b>
-                            <div>Skapad av: <%= task.creator %></div> 
-                            <% let msec = Date.parse(task.date);
-                            let dt = new Date(msec);
-                            let dateCreated = dt.toLocaleDateString(); %>
-                            <div>Datum:  <%= dateCreated %> </div>
-                            <button type="button" class="btn btn-dark"><a href="/delete/<%= task._id%> ">Klart! </a></button>
-                            <button type="button" class="btn btn-dark"><a href="/update/<%= task._id%> ">Ändra. </a></button>
-                    </li>
+                    <div class="my-3">
+                        <h3><%= task.todo %> </h3> 
+                        <div>Skapad av: <%= task.creator %></div> 
+                        <% let msec = Date.parse(task.date);
+                        let dt = new Date(msec);
+                        let dateCreated = dt.toLocaleDateString(); %>
+                        <div class="my-2">Datum:  <%= dateCreated %> </div>
+                        <button type="button" class="btn btn-sm"><a href="/delete/<%= task._id%> ">Klart! </a></button>
+                        <button type="button" class="btn btn-sm"><a href="/update/<%= task._id%> ">Ändra </a></button>
+                    </div>
                 <% }); %>
-                <button type="button" class="btn btn-dark"><a href="/todolist/sorted">Visa i bokstavordning </a></button>
-                <button type="button" class="btn btn-dark"><a href="/todolist">Visa ordinarie ordning </a></button>
+                <div class="sortbButtons d-flex my-3">
+                    <button type="button" class="btn mr-2"><a href="/todolist/sorted">Visa i bokstavordning </a></button>
+                    <button type="button" class="btn mr-2"><a href="/todolist">Visa ordinarie ordning </a></button>
+                </div>
             </div>
         </div>  
     </div>
