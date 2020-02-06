@@ -3,10 +3,16 @@ const Todo = require("../model/Todo");
 // express.Router is a function within express to handle our routes.
 const router = express.Router();
 
+router.get("/todolist/sorted", async (request, response)=> {
+    console.log(request.query);
+    const sorted= request.query.sort+1;
+    const toDos = await Todo.find().sort({todo: sorted});
+    response.render("toDoList", {toDos});
+});
+
 router.get("/todolist", async (request, response)=> {
-    //console.log(request.query);
-    // const sorted= request.query.sort;
-    const toDos = await Todo.find().sort({date: -1});
+    
+    const toDos = await Todo.find();
     response.render("toDoList", {toDos});
 });
 
@@ -26,19 +32,17 @@ router.get("/delete/:id", async (request, response)=> {
     response.redirect("/todolist");
 });
 
-router.get("/update/:id", async (request, response)=> {
+router.route("/update/:id")
+
+.get(async (request, response)=> {
     const editRes = await Todo.findById({_id: request.params.id});
     response.render("edit", {editRes});
-});
+})
 
-router.post("/update/:id", async (request, response)=> {
+.post(async (request, response)=> {
     await Todo.updateOne({_id: request.params.id}, {$set: {todo: request.body.todo, creator: request.body.creator}}, {runValidators: true});
     console.log(request.body);
     response.redirect("/todolist");
 });
 
-
-        /* let msec = Date.parse(toDo.date);
-        let dt = new Date(msec);
-        let dateTaken = dt.toLocaleDateString(); */
 module.exports = router;

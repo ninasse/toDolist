@@ -11,14 +11,15 @@ const PORT = process.env.PORT || 8001;
 
 // middleware
 app.use(express.urlencoded({extended: true}));
-app.use(express.static(path.join(__dirname, "public")));
+
 app.use(sassMiddleware({
     src: path.join(__dirname, "scss"),
     dest: path.join(__dirname, "public")
 }));
+
+
+app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
-
-
 // routes
 app.use(toDoRoutes);
 
