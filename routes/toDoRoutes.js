@@ -1,14 +1,16 @@
 const express = require ("express");
-const Todo = require("../model/toDo").default;
+const Todo = require("../model/Todo");
 // express.Router is a function within express to handle our routes.
 const router = express.Router();
 
-router.get("/todolist", async(request, response)=> {
-    const toDos = await Todo.find();
+router.get("/todolist", async (request, response)=> {
+    //console.log(request.query);
+    // const sorted= request.query.sort;
+    const toDos = await Todo.find().sort({date: -1});
     response.render("toDoList", {toDos});
 });
 
-router.post("/todolist", async(request, response)=> {
+router.post("/todolist", async (request, response)=> {
     const toDo = await new Todo ({
             todo: request.body.todo,
             creator: request.body.creator,
@@ -30,7 +32,7 @@ router.get("/update/:id", async (request, response)=> {
 });
 
 router.post("/update/:id", async (request, response)=> {
-    await Todo.updateOne({_id: request.params.id}, {$set: {todo: request.body.todo, creator: request.body.creator}});
+    await Todo.updateOne({_id: request.params.id}, {$set: {todo: request.body.todo, creator: request.body.creator}}, {runValidators: true});
     console.log(request.body);
     response.redirect("/todolist");
 });

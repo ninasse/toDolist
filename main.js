@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const config = require("./config/config");
 const toDoRoutes = require("./routes/toDoRoutes");
+const sassMiddleware = require("node-sass-middleware");
 
 const app = express();
 const PORT = process.env.PORT || 8001;
@@ -11,7 +12,12 @@ const PORT = process.env.PORT || 8001;
 // middleware
 app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(sassMiddleware({
+    src: path.join(__dirname, "scss"),
+    dest: path.join(__dirname, "public")
+}));
 app.set("view engine", "ejs");
+
 
 // routes
 app.use(toDoRoutes);

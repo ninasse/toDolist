@@ -6,7 +6,7 @@ const schemaToDo = new mongoose.Schema({
         date: {type: Date, default: Date.now},
     });
 
-// variable ToDo referes to a class/ model. Todo inside parenteses referes to the collection/ database
-const ToDo = mongoose.model("Todo", schemaToDo)
+// variable Todo referes to a class/ model. Todo inside parenteses referes to the collection/ database
+const Todo = mongoose.model("todo", schemaToDo)
 
-module.exports = ToDo;
+module.exports = Todo;
