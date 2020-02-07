@@ -3,28 +3,33 @@ const Todo = require("../model/Todo");
 // express.Router is a function within express to handle our routes.
 const router = express.Router();
 
+const tasks = 3;
+
 router.get("/todolist/sorted", async (request, response)=> {
     console.log(request.query);
     const sorted= request.query.sort+1;
-    const toDos = await Todo.find().sort({todo: sorted});
+    const toDos = await Todo.find().sort({todo: sorted}).skip((page-1)*tasks).limit(3);
     response.render("toDoList", {toDos});
 });
 
-router.get("/todolist", async (request, response)=> {
+router.route("/todolist")
+
+    .get(async (request, response)=> {
     
-    const toDos = await Todo.find();
-    response.render("toDoList", {toDos});
-});
+        const page = request.query.page;
+        const toDos = await Todo.find().skip((page-1)* tasks).limit(3);
+        response.render("toDoList", {toDos});
+    })
 
-router.post("/todolist", async (request, response)=> {
-    const toDo = await new Todo ({
-            todo: request.body.todo,
-            creator: request.body.creator,
-            //date: {type: Date, default: Date.now}
+.post(async (request, response)=> {
+        const toDo = await new Todo ({
+                todo: request.body.todo,
+                creator: request.body.creator,
+                //date: {type: Date, default: Date.now}
+        });
+        const newTask = toDo.save();
+        response.redirect("/todolist");
     });
-    const newTask = toDo.save();
-    response.redirect("/todolist");
-});
 
 router.get("/delete/:id", async (request, response)=> {
     console.log(request.params.id);
@@ -34,15 +39,15 @@ router.get("/delete/:id", async (request, response)=> {
 
 router.route("/update/:id")
 
-.get(async (request, response)=> {
-    const editRes = await Todo.findById({_id: request.params.id});
-    response.render("edit", {editRes});
-})
+    .get(async (request, response)=> {
+        const editRes = await Todo.findById({_id: request.params.id});
+        response.render("edit", {editRes});
+    })
 
-.post(async (request, response)=> {
-    await Todo.updateOne({_id: request.params.id}, {$set: {todo: request.body.todo, creator: request.body.creator}}, {runValidators: true});
-    console.log(request.body);
-    response.redirect("/todolist");
-});
+    .post(async (request, response)=> {
+        await Todo.updateOne({_id: request.params.id}, {$set: {todo: request.body.todo, creator: request.body.creator}}, {runValidators: true});
+        console.log(request.body);
+        response.redirect("/todolist");
+    });
 
 module.exports = router;

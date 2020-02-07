@@ -1,6 +1,7 @@
 <%- include ("header.ejs") %>
-<body>
-    <div class="container">
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <div class="container ">
         <h1>Min att göra lista</h1>
         <form actionn="/todolist" method="post" class="form-inline" id="toDoForm">
             <div class="form-group my-2">
@@ -17,25 +18,28 @@
         <div class="row">
             <div class="col-6 my-3">
                 <h2>Att göra: </h2>
-                <% toDos.forEach( (task)=> { %>
-                    <div class="my-3">
-                        <h3><%= task.todo %> </h3> 
-                        <div>Skapad av: <%= task.creator %></div> 
-                        <% let msec = Date.parse(task.date);
-                        let dt = new Date(msec);
-                        let dateCreated = dt.toLocaleDateString(); %>
-                        <div class="my-2">Datum:  <%= dateCreated %> </div>
-                        <button type="button" class="btn btn-sm"><a href="/delete/<%= task._id%> ">Klart! </a></button>
-                        <button type="button" class="btn btn-sm"><a href="/update/<%= task._id%> ">Ändra </a></button>
+                    <% toDos.forEach( (task)=> { %>
+                        <div class="my-3">
+                            <h3><%= task.todo %> </h3> 
+                            <div>Skapad av: <%= task.creator %></div> 
+                            <% let msec = Date.parse(task.date);
+                            let dt = new Date(msec);
+                            let dateCreated = dt.toLocaleDateString(); %>
+                            <div class="my-2">Datum:  <%= dateCreated %> </div>
+                            <button type="button" class="btn btn-sm"><a href="/delete/<%= task._id%> ">Klart! </a></button>
+                            <button type="button" class="btn btn-sm"><a href="/update/<%= task._id%> ">Ändra </a></button>
+                        </div>
+                    <% }); %>
+                    <div class="sortbButtons d-flex my-3">
+                        <button type="button" class="btn mr-2"><a href="/todolist/sorted">Visa i bokstavordning </a></button>
+                        <button type="button" class="btn mr-2"><a href="/todolist">Visa ordinarie ordning </a></button>
                     </div>
-                <% }); %>
-                <div class="sortbButtons d-flex my-3">
-                    <button type="button" class="btn mr-2"><a href="/todolist/sorted">Visa i bokstavordning </a></button>
-                    <button type="button" class="btn mr-2"><a href="/todolist">Visa ordinarie ordning </a></button>
                 </div>
-            </div>
-        </div>  
-    </div>
-    
+            </div> 
+            <a href="/todolist/?page=1">1</a> 
+            <a href="/todolist/?page=2">2</a>
+        </div>
+    </main>  
 </body>
+<footer class="footer mt-auto"><div class="container">Footer</div></footer> 
 </html>
