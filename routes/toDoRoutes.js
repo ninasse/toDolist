@@ -7,6 +7,7 @@ const tasks = 3;
 
 router.get("/todolist/sorted", async (request, response)=> {
     console.log(request.query);
+    const page = request.query.page;
     const sorted= request.query.sort+1;
     const toDos = await Todo.find().sort({todo: sorted}).skip((page-1)*tasks).limit(3);
     response.render("toDoList", {toDos});
@@ -18,7 +19,7 @@ router.route("/todolist")
     
         const page = request.query.page;
         const toDos = await Todo.find().skip((page-1)* tasks).limit(3);
-        response.render("toDoList", {toDos});
+        response.render("toDoList", {toDos, page});
     })
 
 .post(async (request, response)=> {
@@ -27,7 +28,7 @@ router.route("/todolist")
                 creator: request.body.creator,
                 //date: {type: Date, default: Date.now}
         });
-        const newTask = toDo.save();
+        toDo.save();
         response.redirect("/todolist");
     });
 

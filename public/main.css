@@ -1,24 +1,64 @@
-body {
-  background: #c0fbf0;
-  background: linear-gradient(#009999, white, #009999);
-  display: flex;
-  flex-direction: column;
+html {
   height: 100%; }
-  body main {
-    flex: 1 0 auto; }
-    body main a {
-      color: black; }
-    body main h1 {
-      text-align: center; }
-    body main form h3 {
-      font-size: 1.5rem; }
-    body main button {
-      background-color: transparent;
-      border: 1px solid black !important; }
-    body main button:hover {
-      background-color: black;
-      color: #009999 !important; }
-      body main button:hover a:hover {
-        color: #009999; }
-  body footer {
-    flex-shrink: 0; }
+  html body {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%; }
+    html body main {
+      flex: 1 0 auto; }
+      html body main a {
+        color: black; }
+      html body main h1 {
+        margin-top: 2rem;
+        font-size: 2.2rem;
+        text-align: center; }
+      html body main h2 {
+        font-size: 1.7rem; }
+      html body main h3 {
+        font-size: 1.5rem; }
+      html body main form {
+        justify-content: center; }
+        html body main form .form-control {
+          background-color: rgba(252, 221, 243, 0.555);
+          border: 1px solid #702470; }
+      html body main .btn {
+        background-color: transparent;
+        border: 1px solid #702470; }
+      html body main .btn:hover {
+        background-color: #702470;
+        color: #fcddf3; }
+        html body main .btn:hover a:hover {
+          color: #fcddf3; }
+      html body main .pagination {
+        justify-content: center; }
+        html body main .pagination p {
+          display: inline;
+          margin: 1rem; }
+        html body main .pagination a {
+          margin: 1rem; }
+    html body footer {
+      padding-top: 2rem;
+      padding-bottom: 1.7rem;
+      font-size: 0.8rem;
+      background-color: rgba(112, 36, 112, 0.753);
+      flex-shrink: 0;
+      display: flex;
+      justify-content: space-around; }
+
+@media (min-width: 380px) and (max-width: 767px) {
+  html body main .form-inline {
+    flex-flow: column; }
+    html body main .form-inline .btn {
+      font-size: small;
+      margin-bottom: 0 !important; } }
+
+@media (min-width: 768px) and (max-width: 990px) {
+  body main #toDosContainer {
+    margin-left: 4.5rem; }
+  body main .form-inline {
+    flex-flow: nowrap; }
+    body main .form-inline .btn {
+      margin-top: 0;
+      font-size: small; } }
