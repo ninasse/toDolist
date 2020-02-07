@@ -1,19 +1,24 @@
 body {
   background: #c0fbf0;
-  background: linear-gradient(#009999, white, #009999); }
-  body h1 {
-    text-align: center; }
-  body h3 {
-    font-size: 1.5rem; }
-  body form li {
-    list-style-type: none; }
-  body button {
-    background-color: transparent;
-    border: 1px solid black !important; }
-    body button a {
+  background: linear-gradient(#009999, white, #009999);
+  display: flex;
+  flex-direction: column;
+  height: 100%; }
+  body main {
+    flex: 1 0 auto; }
+    body main a {
       color: black; }
-  body button:hover {
-    background-color: black;
-    color: #009999 !important; }
-    body button:hover a:hover {
-      color: #009999; }
+    body main h1 {
+      text-align: center; }
+    body main form h3 {
+      font-size: 1.5rem; }
+    body main button {
+      background-color: transparent;
+      border: 1px solid black !important; }
+    body main button:hover {
+      background-color: black;
+      color: #009999 !important; }
+      body main button:hover a:hover {
+        color: #009999; }
+  body footer {
+    flex-shrink: 0; }
