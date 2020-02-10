@@ -5,11 +5,19 @@ const router = express.Router();
 
 const tasks = 3;
 
-router.get("/todolist/sorted", async (request, response)=> {
+router.get("/todolist/AtoZ", async (request, response)=> {
     console.log(request.query);
     const page = request.query.page;
     const sorted= request.query.sort+1;
     const toDos = await Todo.find().sort({todo: sorted}).skip((page-1)*tasks).limit(3);
+    response.render("toDoList", {toDos});
+});
+
+router.get("/todolist/prio1to5", async (request, response)=> {
+    console.log(request.query);
+    const page = request.query.page;
+    const sorted= request.query.sort-1;
+    const toDos = await Todo.find().sort({priority: sorted}).skip((page-1)*tasks).limit(3);
     response.render("toDoList", {toDos});
 });
 
@@ -26,6 +34,7 @@ router.route("/todolist")
         const toDo = await new Todo ({
                 todo: request.body.todo,
                 creator: request.body.creator,
+                priority: request.body.priority,
                 //date: {type: Date, default: Date.now}
         });
         toDo.save();
@@ -46,7 +55,7 @@ router.route("/update/:id")
     })
 
     .post(async (request, response)=> {
-        await Todo.updateOne({_id: request.params.id}, {$set: {todo: request.body.todo, creator: request.body.creator}}, {runValidators: true});
+        await Todo.updateOne({_id: request.params.id}, {$set: {todo: request.body.todo, creator: request.body.creator, priority: request.body.priority}}, {runValidators: true});
         console.log(request.body);
         response.redirect("/todolist");
     });

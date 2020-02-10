@@ -3,7 +3,8 @@
     <main>
         <div class="container ">
             <h1>Min att göra lista</h1>
-            <form action="/todolist" method="post" class="form-inline" id="toDoForm">
+            <form action="/todolist" method="post" class="" id="toDoForm">
+                <div class="form-row">
                 <div class="form-group my-2">
                     <label for="newTask" class="m-1">Ny uppgift</label>
                     <input type="text" class="form-control mr-2" name="todo" id="" value="" placeholder="fyll i ny uppgift">
@@ -12,16 +13,24 @@
                     <label for="creator" class="m-1">Ditt namn</label>
                     <input type="text" class="form-control mr-2" name="creator" id="" placeholder="fyll i namn">
                 </div>
+                </div>
+                <div class="form-row">
+                <div class="form-group my-2">
+                    <label for="priority" class="m-1" id="prioInput">Prioritet 1 = jätteviktigt och 5 = mindre viktigt</label>
+                    <input type="number" class="form-control mr-2" name="priority" min="1" max="5" id="">
+                </div>
                 <input type="hidden" name="date" id="">
                 <button type="submit" class="btn m-2">Lägg till uppgift</button>
+                </div>
             </form>  
             <div class="row">
-                <div class="my-3 p-5" id="toDosContainer">
+                <div class="my-3 p-3" id="toDosContainer">
                     <h2>Att göra: </h2>
                         <% toDos.forEach( (task)=> { %>
                             <div class="my-3">
                                 <h3><%= task.todo %> </h3> 
-                                <div>Skapad av: <%= task.creator %></div> 
+                                <div>Prioritet: <%= task.priority %></div>
+                                <div>Skapad av: <%= task.creator %></div>
                                 <% let msec = Date.parse(task.date);
                                 let dt = new Date(msec);
                                 let dateCreated = dt.toLocaleDateString(); %>
@@ -31,8 +40,9 @@
                             </div>
                         <% }); %>
                         <div class="sortbButtons d-flex my-3">
-                            <button type="button" class="btn mr-2"><a href="/todolist/sorted/">Visa i bokstavordning </a></button>
-                            <button type="button" class="btn mr-2"><a href="/todolist">Visa ordinarie ordning </a></button>
+                            <button type="button" class="btn mr-2"><a href="/todolist/AtoZ">Sortera A &rarr; Z </a></button>
+                            <button type="button" class="btn mr-2 text-nowrap"><a href="/todolist/prio1to5">Prio 1 &rarr; 5 </a></button>
+                            <button type="button" class="btn mr-2"><a href="/todolist">Osorterat </a></button>
                         </div>
                 </div>
             </div> 

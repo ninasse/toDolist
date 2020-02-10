@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const schemaToDo = new mongoose.Schema({
         todo: {type: String, required: true},
         creator: {type: String, required: true},
+        priority: {type: Number, min: 1, max: 5},
         date: {type: Date, default: Date.now},
     });
 

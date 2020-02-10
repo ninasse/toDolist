@@ -1,7 +1,7 @@
 html {
   height: 100%; }
   html body {
-    background-image: url("../images/background.jpg");
+    background-image: url("../images/background_mobile.jpg");
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -20,9 +20,14 @@ html {
         font-size: 1.5rem; }
       html body main form {
         justify-content: center; }
-        html body main form .form-control {
-          background-color: rgba(252, 221, 243, 0.555);
-          border: 1px solid #702470; }
+        html body main form .form-row {
+          display: flex;
+          flex-wrap: nowrap; }
+          html body main form .form-row .form-control {
+            background-color: rgba(252, 221, 243, 0.555);
+            border: 1px solid #702470; }
+          html body main form .form-row #prioInput {
+            display: block; }
       html body main .btn {
         background-color: transparent;
         border: 1px solid #702470; }
@@ -47,18 +52,21 @@ html {
       display: flex;
       justify-content: space-around; }
 
+@media screen and (min-width: 520px) {
+  html body {
+    background-image: url("../images/background.jpg");
+    background-size: cover; } }
+
 @media (min-width: 380px) and (max-width: 767px) {
-  html body main .form-inline {
+  html body main form {
     flex-flow: column; }
-    html body main .form-inline .btn {
+    html body main form .btn {
       font-size: small;
       margin-bottom: 0 !important; } }
 
 @media (min-width: 768px) and (max-width: 990px) {
   body main #toDosContainer {
     margin-left: 4.5rem; }
-  body main .form-inline {
-    flex-flow: nowrap; }
-    body main .form-inline .btn {
-      margin-top: 0;
-      font-size: small; } }
+  body main .form-inline .btn {
+    margin-top: 0;
+    font-size: small; } }
