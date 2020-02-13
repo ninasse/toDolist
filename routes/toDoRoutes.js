@@ -30,16 +30,27 @@ router.route("/todolist")
         response.render("toDoList", {toDos, page});
     })
 
-.post(async (request, response)=> {
+    .post(async (request, response)=> {
         const toDo = await new Todo ({
                 todo: request.body.todo,
                 creator: request.body.creator,
                 priority: request.body.priority,
                 //date: {type: Date, default: Date.now}
         });
-        toDo.save();
-        response.redirect("/todolist");
+        toDo.validate(function(err) {
+            if (err) {
+                console.log(err);
+                response.render("errors", {err});
+            } else {
+                toDo.save();
+                response.redirect("/todolist");
+            }   
+        });   
     });
+
+
+    
+
 
 router.get("/delete/:id", async (request, response)=> {
     console.log(request.params.id);

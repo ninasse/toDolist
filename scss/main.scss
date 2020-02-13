@@ -17,10 +17,10 @@ html {
             text-align: center;
             }
             h2 {
-                font-size: 1.7rem;
+                font-size: 1.2rem;
             }
             h3{
-                font-size: 1.5rem;
+                font-size: 1.1rem;
             }
             form {
                 justify-content: center;
@@ -37,14 +37,27 @@ html {
             }
             }
             .btn {
-            background-color: transparent;
-            border: 1px solid rgb(112, 36, 112); 
+                background-color:rgba(112, 36, 112, 0.904);
+                color: rgb(252, 221, 243);
+                a {
+                    color: rgb(252, 221, 243);
+                }
             }
             .btn:hover {
-            background-color: rgb(112, 36, 112);
-            color: rgb(252, 221, 243);
+            background-color: rgb(252, 221, 243);
+            color: rgb(112, 36, 112);
                 a:hover{
-                    color: rgb(252, 221, 243);
+                    color: rgb(112, 36, 112);
+                }
+            }
+            .row {
+                margin-right: 0;
+                margin-left: 0;
+                #date {
+                    font-size: small;
+                }
+                .btn-sm {
+                    font-size: small;
                 }
             }
             .pagination {
@@ -57,6 +70,9 @@ html {
                     margin: 1rem;
                 }
             }
+        }
+        .sortButtons {
+            flex-wrap: nowrap;
         }
         footer {
             padding-top: 2rem;
@@ -86,12 +102,11 @@ html {
 }
 @media (min-width: 768px) and (max-width: 990px) {
     body main {
-        #toDosContainer {
-            margin-left: 4.5rem;
-        }
         .form-inline{
             //flex-flow: nowrap;
             .btn  {
+                background-color: transparent;
+                border: 1px solid rgb(112, 36, 112);
                 margin-top: 0;
                 font-size: small;
             }
