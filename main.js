@@ -7,7 +7,7 @@ const toDoRoutes = require("./routes/toDoRoutes");
 const sassMiddleware = require("node-sass-middleware");
 
 const app = express();
-const PORT = process.env.PORT || 8001;
+const PORT = process.env.PORT || 8002;
 
 // middleware
 app.use(express.urlencoded({extended: true}));
@@ -20,6 +20,7 @@ app.use(sassMiddleware({
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
+
 // routes
 app.use(toDoRoutes);
 
@@ -35,3 +36,5 @@ mongoose.connect(config.databaseURL,options).then(()=> {
     console.log("Koppling till databas OK!");
     app.listen(PORT);
 });
+
+module.exports = app;

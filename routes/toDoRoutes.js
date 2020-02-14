@@ -9,7 +9,7 @@ router.get("/todolist/AtoZ", async (request, response)=> {
     console.log(request.query);
     const page = request.query.page;
     const sorted= request.query.sort+1;
-    const toDos = await Todo.find().sort({todo: sorted}).skip((page-1)*tasks).limit(3);
+    const toDos = await Todo.find().sort({todo: sorted}).skip((page-1)*tasks).limit(tasks);
     response.render("toDoList", {toDos});
 });
 
@@ -17,7 +17,7 @@ router.get("/todolist/prio1to5", async (request, response)=> {
     console.log(request.query);
     const page = request.query.page;
     const sorted= request.query.sort-1;
-    const toDos = await Todo.find().sort({priority: sorted}).skip((page-1)*tasks).limit(3);
+    const toDos = await Todo.find().sort({priority: sorted}).skip((page-1)*tasks).limit(tasks);
     response.render("toDoList", {toDos});
 });
 
@@ -26,7 +26,7 @@ router.route("/todolist")
     .get(async (request, response)=> {
     
         const page = request.query.page;
-        const toDos = await Todo.find().skip((page-1)* tasks).limit(3);
+        const toDos = await Todo.find().skip((page-1)* tasks).limit(tasks);
         response.render("toDoList", {toDos, page});
     })
 
@@ -48,7 +48,9 @@ router.route("/todolist")
         });   
     });
 
-
+router.get("/todolist/about", (request, response)=> {
+    response.render("about");
+})
     
 
 

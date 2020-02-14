@@ -63,7 +63,7 @@ html {
       display: flex;
       justify-content: space-around; }
 
-@media screen and (min-width: 520px) {
+@media (min-width: 520px) {
   html body {
     background-image: url("../images/background.jpg");
     background-size: cover; } }
