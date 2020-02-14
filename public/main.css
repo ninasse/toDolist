@@ -54,6 +54,8 @@ html {
           margin: 1rem; }
     html body .sortButtons {
       flex-wrap: nowrap; }
+    html body #errButton {
+      margin: 0 auto; }
     html body footer {
       padding-top: 2rem;
       padding-bottom: 1.7rem;

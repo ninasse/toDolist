@@ -59,6 +59,7 @@ html {
                 .btn-sm {
                     font-size: small;
                 }
+                
             }
             .pagination {
                 justify-content: center;
@@ -73,6 +74,9 @@ html {
         }
         .sortButtons {
             flex-wrap: nowrap;
+        }
+        #errButton{
+            margin: 0 auto;
         }
         footer {
             padding-top: 2rem;

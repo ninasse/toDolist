@@ -3,11 +3,9 @@
 <body>
     <main>
         <div class="container">
-            <div class="d-flex flex-column">
-                <% const errmsg = err.message.split(" ").slice(4, 10).join(" ")%>
-                <div class="my-3 text-center"><%= errmsg%></div>
-                <button class="btn m-4"><a href="/todolist">Tillbaka</a></button>
-            </div>
+            <% const errmsg = err.message.split(" ").slice(4, 10).join(" ")%>
+            <h1 class="my-3"><%= errmsg%></h1>
+            <button class="btn my-4 d-block" id="errButton"><a href="/todolist">Tillbaka</a></button>
         </div>
     </main>
 
